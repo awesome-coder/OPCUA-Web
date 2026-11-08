@@ -1,0 +1,29 @@
+server:
+  port: ${OPCUA_WEB_PORT:8088}
+  compression:
+    enabled: true
+  error:
+    include-message: always
+
+spring:
+  application:
+    name: opcua-web
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    default-property-inclusion: non_null
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
+
+opcua:
+  web:
+    data-dir: ${OPCUA_WEB_DATA_DIR:./data}
+    cors-allowed-origins: ${OPCUA_WEB_CORS_ORIGINS:http://localhost:5173,http://127.0.0.1:5173}
+    live-heartbeat-ms: 15000
+
+logging:
+  level:
+    com.opcua.web: INFO
+    org.eclipse.milo: WARN
